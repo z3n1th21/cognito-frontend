@@ -17,7 +17,7 @@
       <p>
         <b>{{ `Question: ${result.q}` }}</b>
       </p>
-      <p>
+      <p :style="correctness(i, result.a)">
         {{ `Your Answer: ${result.a}` }}
       </p>
     </section>
@@ -61,6 +61,24 @@ export default {
       this.q = 0;
       this.answer = "";
       this.results = [];
+    },
+    correctness(q, a) {
+      let color = '';
+      switch(q) {
+        case 2:
+          color = a === 'John Adams' ? 'Green': 'Red';
+          break;
+        case 3:
+          color = a === 'Paris' ? 'Green': 'Red';
+          break;
+        case 4:
+          color = a === '26' ? 'Green': 'Red';
+          break;
+        default:
+          color = 'Black';
+          break;
+      }
+      return `color:${color};`;
     }
   },
   mounted() {
